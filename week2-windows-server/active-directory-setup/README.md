@@ -16,15 +16,15 @@ Built a complete Active Directory environment from scratch including domain cont
 ## 🏗️ Infrastructure Details
 
 **Domain Information:**
-- **Domain Name:** lab.local (or your domain)
-- **Forest Functional Level:** Windows Server 2016
-- **Domain Controller:** WS2022-DC01
-- **IP Address:** 192.168.1.10
-- **DNS Server:** 192.168.1.10 (integrated with AD)
+- **Domain Name:** serverv1.local
+- **Forest Functional Level:** Windows Server 2022
+- **Domain Controller:** serverv1
+- **IP Address:** 10.2.2.15
+- **DNS Server:** 10.2.2.15 (integrated with AD)
 
 ## 📊 Organizational Unit Structure
 ```
-lab.local
+serverv1.local
 │
 ├── Domain Controllers (default)
 │
