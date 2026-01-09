@@ -1,5 +1,3 @@
-# sysadmin-homelab
-
 # Systems Administration Home Lab
 
 Self-directed learning path to become job-ready sysadmin by March 2025.
