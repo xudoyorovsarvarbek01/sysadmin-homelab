@@ -145,23 +145,17 @@ Set-ADDefaultDomainPasswordPolicy `
 
 ## 📸 Screenshots
 
-### AD DS Installation
-![AD Installation](./screenshots/01-ad-installation.png)
-
-### Domain Structure
+### Domain Structure & OU Hierarchy
 ![Domain Structure](./screenshots/02-domain-structure.png)
-
-### OU Hierarchy
-![OU Structure](./screenshots/03-ou-structure.png)
 
 ### Users Created
 ![Users](./screenshots/04-users-created.png)
 
-### Security Groups
-![Groups](./screenshots/05-groups-created.png)
-
 ### Password Policy GPO
 ![GPO Password Policy](./screenshots/06-gpo-password-policy.png)
+
+### Powershell ADUser Error
+![Error](./screenshots/07-password-policy-check.png)
 
 ## 🧪 Testing & Verification
 
@@ -217,7 +211,6 @@ New-ADUser -Name "Test" -SamAccountName "test" `
 ## 🔄 Next Steps
 
 - [ ] Configure additional GPOs (desktop settings, software deployment)
-- [ ] Set up second Domain Controller for redundancy
 - [ ] Implement DHCP integration with AD
 - [ ] Create file shares with AD permissions
 - [ ] Configure FSMO roles management
@@ -251,4 +244,4 @@ active-directory-setup/
 ---
 
 *Project completed as part of 10-week sysadmin training program*  
-*Date: [Current Date]*
+*Date: 11.01.2026
