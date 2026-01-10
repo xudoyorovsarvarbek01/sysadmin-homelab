@@ -4,9 +4,8 @@
 .DESCRIPTION
     Automates creation of organizational units for departments, users, groups, and servers
 .AUTHOR
-    [Your Name]
-.DATE
-    [Current Date]
+    Xudoyorov Sarvarbek
+
 #>
 
 # Define domain DN

@@ -220,19 +220,18 @@ New-ADUser -Name "Test" -SamAccountName "test" `
 ```
 active-directory-setup/
 ├── README.md (this file)
+└── configs/
+    └── user-list.csv
 ├── screenshots/
-│   ├── 01-ad-installation.png
 │   ├── 02-domain-structure.png
-│   ├── 03-ou-structure.png
 │   ├── 04-users-created.png
-│   ├── 05-groups-created.png
-│   └── 06-gpo-password-policy.png
+│   ├── 06-gpo-password-policy.png
+|   └── 07-password-policy-check.png
 ├── scripts/
 │   ├── create-ou-structure.ps1
 │   ├── bulk-create-users.ps1
 │   └── create-security-groups.ps1
-└── configs/
-    └── user-list.csv
+
 ```
 
 ## 🔗 Related Projects
