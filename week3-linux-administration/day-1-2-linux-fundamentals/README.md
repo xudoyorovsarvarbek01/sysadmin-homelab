@@ -343,7 +343,7 @@ sudo -u readonly-user echo "test" >> /var/log/app-logs/app.log  # ✗ Permission
 sudo -u webapp echo "Updated" >> /var/www/myapp/index.html  # ✓ Success
 ```
 
-```
+
 
 ---
 
