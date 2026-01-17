@@ -243,4 +243,4 @@ active-directory-setup/
 ---
 
 *Project completed as part of 10-week sysadmin training program*  
-*Date: 11.01.2026
+*Date: January 2026*

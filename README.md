@@ -11,6 +11,7 @@ Following a 10-week intensive training program covering:
 - Linux system administration
 - PowerShell automation
 - Security hardening
+- etc.
 
 ## 🛠️ Lab Environment
 
@@ -20,7 +21,7 @@ Following a 10-week intensive training program covering:
   - Ubuntu Server 22.04 (Linux practice)
 - **Network:** Isolated virtual network (10.2.2.15/8)
 
-## 📚 Completed Modules
+## Completed Modules
 
 ### ✅ Week 1: Networking Fundamentals
 - OSI Model & TCP/IP deep dive
@@ -31,12 +32,20 @@ Following a 10-week intensive training program covering:
 
 ### ✅ Week 2: Windows Server (In Progress)
 - Windows Server 2022 installation & configuration
-- **Active Directory Domain Services setup** ⭐
+- **Active Directory Domain Services setup**
 - File server and permissions management
 - [View Details →](./week2-windows-server/)
 
+### ✅ Week 3: Linux System Administration (In Progress)
+- Ubuntu Server installation & configuration
+- **User & permission management (useradd, chmod, chown)**
+- Linux file system hierarchy mastery
+- Process & service management (systemd, cron)
+- Network configuration & troubleshooting
+- Bash scripting automation
+- [View Details →](./week3-linux-administration/)
+
 ### 🔄 Upcoming
-- Week 3: Linux System Administration
 - Week 4: PowerShell Automation
 - Week 5: Virtualization & Cloud
 - Week 6: Security & Monitoring
@@ -46,7 +55,7 @@ Following a 10-week intensive training program covering:
 **Networking:** TCP/IP, Subnetting, DNS, DHCP, Packet Analysis  
 **Windows:** Server 2022, Active Directory, Group Policy, PowerShell  
 **Linux:** Ubuntu Server, Bash scripting, systemd  
-**Tools:** Wireshark, PowerShell, VirtualBox  
+**Tools:** Wireshark, PowerShell, VirtualBox, **Terminal**
 **Security:** Network hardening, access control, security policies
 
 ## 📫 Contact
@@ -57,4 +66,4 @@ Following a 10-week intensive training program covering:
 
 ---
 
-*Last Updated: 10.1.2026*
+*Last Updated: Mid January 2026*

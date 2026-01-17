@@ -1,6 +1,6 @@
 # Linux Fundamentals - User & Permission Management
 
-## 📋 Overview
+## Overview
 
 Demonstrated core Linux system administration skills including file system navigation, user/group management, and permission configuration on Ubuntu Server.
 
@@ -17,7 +17,7 @@ Demonstrated core Linux system administration skills including file system navig
 
 ---
 
-## 🗂️ Linux File System Hierarchy
+## Linux File System Hierarchy
 
 ### **Key Directories:**
 ```
@@ -61,26 +61,19 @@ Demonstrated core Linux system administration skills including file system navig
 /etc/ssh/sshd_config  # SSH server configuration
 ```
 
-**Verified with:**
-```bash
-ls -l / | grep "^d"
-du -sh /var/log /home /etc
-df -h
-```
-
 ---
 
-## 👥 User & Group Management
+## User & Group Management
 
 ### **User Types Created:**
 
 | Username | UID | Primary Group | Secondary Groups | Home Dir | Shell | Purpose |
 |----------|-----|---------------|------------------|----------|-------|---------|
-| **admin-user** | 1001 | admin-user | sudo, adm | /home/admin-user | /bin/bash | System administrator |
-| **developer** | 1002 | developers | docker, www-data | /home/developer | /bin/bash | Application developer |
-| **webapp** | 1003 | webapp | www-data | /home/webapp | /bin/bash | Web application user |
-| **service-account** | 1004 | services | - | /opt/services | /usr/sbin/nologin | Service account (no login) |
-| **readonly-user** | 1005 | readonly | - | /home/readonly-user | /bin/bash | Read-only monitoring user |
+| **admin-user** | 1002 | admin-user | sudo, adm | /home/admin-user | /bin/bash | System administrator |
+| **developer** | 1003 | developers | docker, www-data | /home/developer | /bin/bash | Application developer |
+| **webapp** | 1004 | webapp | www-data | /home/webapp | /bin/bash | Web application user |
+| **service-account** | 1005 | services | - | /opt/services | /usr/sbin/nologin | Service account (no login) |
+| **readonly-user** | 1006 | readonly | - | /home/readonly-user | /bin/bash | Read-only monitoring user |
 
 ### **Groups Created:**
 ```bash
@@ -92,7 +85,7 @@ readonly      # GID: 2004 - Read-only users
 
 ---
 
-## 🔐 File Permissions Demonstrated
+## File Permissions Demonstrated
 
 ### **Permission Levels:**
 
@@ -196,7 +189,7 @@ Result: Service data completely isolated
 
 ---
 
-## 🛠️ Implementation Scripts
+## Implementation Scripts
 
 ### **Script 1: create-users.sh**
 ```bash
@@ -281,7 +274,7 @@ echo "Created users:"
 *Full [system-info.sh](./scripts/system-info.sh)* script
 ---
 
-## 🧪 Testing & Verification
+## Testing & Verification
 
 ### **Test 1: User Creation Verification**
 ```bash
@@ -319,31 +312,6 @@ groups admin-user
 groups developer
 # Expected: developer : developer developers docker www-data
 ```
-
-### **Test 4: Permission Effectiveness**
-```bash
-# Test 1: Admin can access scripts, others cannot
-sudo -u admin-user ls /opt/admin-scripts  # ✓ Success
-sudo -u readonly-user ls /opt/admin-scripts  # ✗ Permission denied
-
-# Test 2: Developer can write to dev-projects
-sudo -u developer touch /opt/dev-projects/test.txt  # ✓ Success
-ls -l /opt/dev-projects/test.txt
-# File should belong to developers group (SGID effect)
-
-# Test 3: Service account cannot login
-su - service-account
-# Expected: "This account is currently not available"
-
-# Test 4: Readonly can read logs but not write
-sudo -u readonly-user cat /var/log/app-logs/app.log  # ✓ Success
-sudo -u readonly-user echo "test" >> /var/log/app-logs/app.log  # ✗ Permission denied
-
-# Test 5: Webapp can modify web files
-sudo -u webapp echo "Updated" >> /var/www/myapp/index.html  # ✓ Success
-```
-
-
 
 ---
 
@@ -406,7 +374,7 @@ Sticky Bit (1): Only owner can delete files
 
 ---
 
-## 🎯 Deliverable Summary
+## Deliverable Summary
 
 **Created:**
 - ✅ 5 users with distinct permission levels
@@ -432,46 +400,10 @@ Sticky Bit (1): Only owner can delete files
 
 ---
 
-## 🔗 Related Projects
+## Related Projects
 
 - [Week 2: Active Directory](../../week2-windows-server/active-directory-setup/)
-- [Day 3-4: Linux Process & Service Management]  (../day-3-4-Process-&-Service-Management)
-
----
-
-## 📝 Commands Reference
-
-**User Management:**
-```bash
-sudo useradd -m -s /bin/bash username    # Create user with home dir
-sudo passwd username                      # Set password
-sudo usermod -aG groupname username      # Add to group
-sudo userdel -r username                 # Delete user and home
-```
-
-**Group Management:**
-```bash
-sudo groupadd groupname                  # Create group
-sudo groupdel groupname                  # Delete group
-groups username                          # Show user's groups
-```
-
-**Permissions:**
-```bash
-chmod 755 file                           # Numeric mode
-chmod u+x,g+r,o-w file                  # Symbolic mode
-chown user:group file                    # Change owner
-chown -R user:group directory           # Recursive
-```
-
-**Viewing:**
-```bash
-ls -l                                    # Long listing
-ls -la                                   # Include hidden
-cat /etc/passwd                          # View users
-cat /etc/group                           # View groups
-id username                              # User info
-```
+- [Day 3-4: Linux Process & Service Management](../day-3-4-Process-&-Service-Management/)
 
 ---
 
