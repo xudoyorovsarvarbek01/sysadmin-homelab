@@ -96,6 +96,21 @@ readonly      # GID: 2004 - Read-only users
 
 ### **Permission Levels:**
 
+### **Permission Bits:**
+```
+-rwxrwxrwx
+│││││││││└─ Others execute
+││││││││└── Others write
+│││││││└─── Others read
+││││││└──── Group execute
+│││││└───── Group write
+││││└────── Group read
+│││└─────── Owner execute
+││└──────── Owner write
+│└───────── Owner read
+└────────── File type (- = file, d = directory, l = link)
+```
+
 **Numeric (Octal) Format:**
 ```
 7 = rwx (read, write, execute)
@@ -178,27 +193,13 @@ Reasoning:
 Result: Service data completely isolated
 ```
 
-**Scenario 5: Read-Only Logs**
-```bash
-Directory: /var/log/app-logs/
-Owner: root:readonly
-Permissions: 750 (rwxr-x---)
-Files: 640 (rw-r-----)
-
-Reasoning:
-- Root can write logs
-- Readonly group can read
-- Others: No access
-
-Result: Monitoring without modification ability
-```
 
 ---
 
 ## 🛠️ Implementation Scripts
 
 ### **Script 1: create-users.sh**
-```bash
+
 #!/bin/bash
 # create-users.sh
 # Creates 5 users with different permission levels
@@ -218,48 +219,8 @@ sudo groupadd -f readonly
 # User 1: Admin User (sudo access)
 echo "Creating admin-user..."
 sudo useradd -m -s /bin/bash -c "System Administrator" admin-user
-echo "admin-user:SecureP@ss123" | sudo chpasswd
-sudo usermod -aG sudo,adm admin-user
-
-# User 2: Developer (development access)
-echo "Creating developer..."
-sudo useradd -m -s /bin/bash -c "Application Developer" developer
-echo "developer:DevP@ss123" | sudo chpasswd
-sudo usermod -aG developers,docker,www-data developer
-
-# User 3: Web Application User
-echo "Creating webapp..."
-sudo useradd -m -s /bin/bash -c "Web Application User" webapp
-echo "webapp:WebP@ss123" | sudo chpasswd
-sudo usermod -aG www-data webapp
-
-# User 4: Service Account (no login shell)
-echo "Creating service-account..."
-sudo useradd -r -s /usr/sbin/nologin -d /opt/services -c "Service Account" service-account
-# No password needed (can't login)
-sudo usermod -aG services service-account
-
-# User 5: Read-only User
-echo "Creating readonly-user..."
-sudo useradd -m -s /bin/bash -c "Read-Only Monitoring User" readonly-user
-echo "readonly-user:ReadP@ss123" | sudo chpasswd
-sudo usermod -aG readonly readonly-user
-
-echo ""
-echo "=== User Creation Complete ==="
-echo ""
-
-# Display created users
-echo "Created users:"
-grep -E "admin-user|developer|webapp|service-account|readonly-user" /etc/passwd
-
-echo ""
-echo "Group memberships:"
-for user in admin-user developer webapp service-account readonly-user; do
-    echo "$user: $(groups $user)"
-done
-```
-
+.........
+*Full script create-users.sh: [create-users.sh](./scripts/create-users.sh)*
 ---
 
 ### **Script 2: set-permissions.sh**
@@ -514,20 +475,6 @@ Security:
 - Password aging information
 ```
 
-### **Permission Bits:**
-```
--rwxrwxrwx
-│││││││││└─ Others execute
-││││││││└── Others write
-│││││││└─── Others read
-││││││└──── Group execute
-│││││└───── Group write
-││││└────── Group read
-│││└─────── Owner execute
-││└──────── Owner write
-│└───────── Owner read
-└────────── File type (- = file, d = directory, l = link)
-```
 
 ### **Special Permission Bits:**
 ```
@@ -628,4 +575,4 @@ id username                              # User info
 ---
 
 *Project completed as part of 10-week sysadmin training program*  
-*Date: January 2025*
+*Date: January 2026*
