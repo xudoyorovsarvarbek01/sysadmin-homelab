@@ -199,7 +199,7 @@ Result: Service data completely isolated
 ## 🛠️ Implementation Scripts
 
 ### **Script 1: create-users.sh**
-
+```bash
 #!/bin/bash
 # create-users.sh
 # Creates 5 users with different permission levels
@@ -220,6 +220,7 @@ sudo groupadd -f readonly
 echo "Creating admin-user..."
 sudo useradd -m -s /bin/bash -c "System Administrator" admin-user
 .........
+```
 *Full script create-users.sh: [create-users.sh](./scripts/create-users.sh)*
 ---
 
