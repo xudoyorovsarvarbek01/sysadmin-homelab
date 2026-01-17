@@ -30,7 +30,7 @@ Following a 10-week intensive training program covering:
 - Wireshark packet analysis
 - [View Details →](./week1-networking/)
 
-### ✅ Week 2: Windows Server (In Progress)
+### ✅ Week 2: Windows Server
 - Windows Server 2022 installation & configuration
 - **Active Directory Domain Services setup**
 - File server and permissions management
