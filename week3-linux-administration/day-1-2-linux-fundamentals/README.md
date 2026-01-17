@@ -276,45 +276,7 @@ echo "User Accounts"
 echo "Total users: $(wc -l < /etc/passwd)"
 echo ""
 echo "Created users:"
-grep -E "admin-user|developer|webapp|service-account|readonly-user" /etc/passwd | \
-    awk -F: '{printf "%-20s UID: %-6s Home: %s\n", $1, $3, $6}'
-echo ""
-
-echo "Groups"
-echo "Created groups:"
-grep -E "developers|webapp|services|readonly" /etc/group | \
-    awk -F: '{printf "%-20s GID: %s\n", $1, $3}'
-echo ""
-
-echo "Permission Verification"
-echo ""
-echo "Admin Scripts:"
-ls -ld /opt/admin-scripts
-ls -l /opt/admin-scripts/test.sh 2>/dev/null || echo "  (no files yet)"
-echo ""
-
-echo "Web Application:"
-ls -ld /var/www/myapp
-ls -l /var/www/myapp/index.html 2>/dev/null || echo "  (no files yet)"
-echo ""
-
-echo "Developer Projects:"
-ls -ld /opt/dev-projects
-echo ""
-
-echo "Service Data:"
-ls -ld /opt/services/data
-echo ""
-
-echo "Application Logs:"
-ls -ld /var/log/app-logs
-ls -l /var/log/app-logs/*.log 2>/dev/null || echo "  (no logs yet)"
-echo ""
-
-echo "User Group Memberships"
-for user in admin-user developer webapp service-account readonly-user; do
-    echo "$user: $(groups $user 2>/dev/null || echo 'user not found')"
-done
+......
 ```
 *Full [system-info.sh](./scripts/system-info.sh)* script
 ---
@@ -327,9 +289,9 @@ done
 cat /etc/passwd | grep -E "admin-user|developer|webapp|service-account|readonly-user"
 
 # Expected output:
-admin-user:x:1001:1001:System Administrator:/home/admin-user:/bin/bash
-developer:x:1002:1002:Application Developer:/home/developer:/bin/bash
-webapp:x:1003:1003:Web Application User:/home/webapp:/bin/bash
+admin-user:x:1002:1002:System Administrator:/home/admin-user:/bin/bash
+developer:x:1003:1003:Application Developer:/home/developer:/bin/bash
+webapp:x:1004:1004:Web Application User:/home/webapp:/bin/bash
 service-account:x:999:999:Service Account:/opt/services:/usr/sbin/nologin
 readonly-user:x:1005:1005:Read-Only Monitoring User:/home/readonly-user:/bin/bash
 ```
@@ -381,16 +343,6 @@ sudo -u readonly-user echo "test" >> /var/log/app-logs/app.log  # ✗ Permission
 sudo -u webapp echo "Updated" >> /var/www/myapp/index.html  # ✓ Success
 ```
 
-### **Test 5: Special Permissions (SGID)**
-```bash
-# Verify SGID on /opt/dev-projects
-ls -ld /opt/dev-projects
-# Expected: drwxrws--- ... (note the 's' in group execute position)
-
-# Create file as developer, verify group ownership
-sudo -u developer touch /opt/dev-projects/newfile.txt
-ls -l /opt/dev-projects/newfile.txt
-# Expected: ... developer developers ... (inherits developers group)
 ```
 
 ---
@@ -402,13 +354,13 @@ ls -l /opt/dev-projects/newfile.txt
 username:x:UID:GID:comment:home_directory:shell
 
 Example:
-admin-user:x:1001:1001:System Administrator:/home/admin-user:/bin/bash
+admin-user:x:1002:1002:System Administrator:/home/admin-user:/bin/bash
 
 Fields:
 1. Username: admin-user
 2. Password placeholder: x (actual password in /etc/shadow)
-3. UID: 1001 (user ID)
-4. GID: 1001 (primary group ID)
+3. UID: 1002 (user ID)
+4. GID: 1002 (primary group ID)
 5. Comment: System Administrator
 6. Home directory: /home/admin-user
 7. Shell: /bin/bash
@@ -483,7 +435,7 @@ Sticky Bit (1): Only owner can delete files
 ## 🔗 Related Projects
 
 - [Week 2: Active Directory](../../week2-windows-server/active-directory-setup/)
-- Day 3-4: Linux Process & Service Management *(coming next)*
+- [Day 3-4: Linux Process & Service Management]  (../day-3-4-Process-&-Service-Management)
 
 ---
 
