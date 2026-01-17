@@ -221,7 +221,7 @@ echo "Creating admin-user..."
 sudo useradd -m -s /bin/bash -c "System Administrator" admin-user
 .........
 ```
-*Full script [create-users.sh](./scripts/create-users.sh)*
+*Full [create-users.sh](./scripts/create-users.sh)* script
 ---
 
 ### **Script 2: set-permissions.sh**
