@@ -207,7 +207,7 @@ Result: Service data completely isolated
 # Exit on error
 set -e
 
-echo "=== Creating Users and Groups ==="
+echo "Creating Users and Groups"
 
 # Create groups
 echo "Creating groups..."
@@ -232,7 +232,7 @@ sudo useradd -m -s /bin/bash -c "System Administrator" admin-user
 
 set -e
 
-echo "=== Setting Up Directory Structure ==="
+echo "Setting Up Directory Structure"
 
 # Create directories
 sudo mkdir -p /opt/admin-scripts
@@ -244,61 +244,9 @@ sudo mkdir -p /var/log/app-logs
 # Scenario 1: Admin Scripts
 echo "Configuring /opt/admin-scripts..."
 sudo chown admin-user:sudo /opt/admin-scripts
-sudo chmod 750 /opt/admin-scripts
-
-# Create test script
-echo '#!/bin/bash' | sudo tee /opt/admin-scripts/test.sh
-echo 'echo "Admin script executed"' | sudo tee -a /opt/admin-scripts/test.sh
-sudo chmod 750 /opt/admin-scripts/test.sh
-
-# Scenario 2: Web Application
-echo "Configuring /var/www/myapp..."
-sudo chown -R webapp:www-data /var/www/myapp
-sudo find /var/www/myapp -type d -exec chmod 755 {} \;
-sudo find /var/www/myapp -type f -exec chmod 644 {} \;
-
-# Create test files
-echo "<h1>Test Web App</h1>" | sudo tee /var/www/myapp/index.html
-sudo chown webapp:www-data /var/www/myapp/index.html
-
-# Scenario 3: Developer Workspace (with SGID)
-echo "Configuring /opt/dev-projects..."
-sudo chown root:developers /opt/dev-projects
-sudo chmod 2770 /opt/dev-projects  # 2 = SGID bit
-
-# Create test project
-sudo mkdir -p /opt/dev-projects/test-project
-echo "# Test Project" | sudo tee /opt/dev-projects/test-project/README.md
-sudo chown -R root:developers /opt/dev-projects/test-project
-
-# Scenario 4: Service Data
-echo "Configuring /opt/services/data..."
-sudo chown -R service-account:services /opt/services/data
-sudo chmod 700 /opt/services/data
-
-# Create test data
-echo "Service data" | sudo -u service-account tee /opt/services/data/config.txt
-sudo chmod 600 /opt/services/data/config.txt
-
-# Scenario 5: Read-only Logs
-echo "Configuring /var/log/app-logs..."
-sudo chown root:readonly /var/log/app-logs
-sudo chmod 750 /var/log/app-logs
-
-# Create test log
-echo "$(date): Application started" | sudo tee /var/log/app-logs/app.log
-sudo chown root:readonly /var/log/app-logs/app.log
-sudo chmod 640 /var/log/app-logs/app.log
-
-echo ""
-echo "=== Permission Setup Complete ==="
-echo ""
-
-# Display results
-echo "Directory permissions:"
-ls -ld /opt/admin-scripts /var/www/myapp /opt/dev-projects /opt/services/data /var/log/app-logs
+.........
 ```
-
+*Full [set-permissions.sh](./scripts/set-permissions.sh)* script
 ---
 
 ### **Script 3: system-info.sh**
@@ -307,7 +255,7 @@ ls -ld /opt/admin-scripts /var/www/myapp /opt/dev-projects /opt/services/data /v
 # system-info.sh
 # Displays system information and verifies setup
 
-echo "=== System Information ==="
+echo "System Information"
 echo ""
 
 echo "Hostname: $(hostname)"
@@ -316,15 +264,15 @@ echo "Kernel: $(uname -r)"
 echo "Uptime: $(uptime -p)"
 echo ""
 
-echo "=== Disk Usage ==="
+echo "Disk Usage"
 df -h | grep -E "Filesystem|/dev/sd"
 echo ""
 
-echo "=== Memory Usage ==="
+echo "Memory Usage"
 free -h
 echo ""
 
-echo "=== User Accounts ==="
+echo "User Accounts"
 echo "Total users: $(wc -l < /etc/passwd)"
 echo ""
 echo "Created users:"
@@ -332,13 +280,13 @@ grep -E "admin-user|developer|webapp|service-account|readonly-user" /etc/passwd 
     awk -F: '{printf "%-20s UID: %-6s Home: %s\n", $1, $3, $6}'
 echo ""
 
-echo "=== Groups ==="
+echo "Groups"
 echo "Created groups:"
 grep -E "developers|webapp|services|readonly" /etc/group | \
     awk -F: '{printf "%-20s GID: %s\n", $1, $3}'
 echo ""
 
-echo "=== Permission Verification ==="
+echo "Permission Verification"
 echo ""
 echo "Admin Scripts:"
 ls -ld /opt/admin-scripts
@@ -363,12 +311,12 @@ ls -ld /var/log/app-logs
 ls -l /var/log/app-logs/*.log 2>/dev/null || echo "  (no logs yet)"
 echo ""
 
-echo "=== User Group Memberships ==="
+echo "User Group Memberships"
 for user in admin-user developer webapp service-account readonly-user; do
     echo "$user: $(groups $user 2>/dev/null || echo 'user not found')"
 done
 ```
-
+*Full [system-info.sh](./scripts/system-info.sh)* script
 ---
 
 ## 🧪 Testing & Verification

@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 # create-users.sh
 # Creates 5 users with different permission levels
@@ -58,4 +57,3 @@ echo "Group memberships:"
 for user in admin-user developer webapp service-account readonly-user; do
     echo "$user: $(groups $user)"
 done
-```
