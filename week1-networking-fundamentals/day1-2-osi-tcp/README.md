@@ -52,18 +52,18 @@ Mastered the theoretical foundation and practical application of network protoco
 
 **Three-Way Handshake:**
 ```
-Client                          Server
-  |                               |
-  |  1. SYN (seq=1000)           |
-  |----------------------------->|
-  |                               |
+Client                           Server
+  |                                 |
+  |      1. SYN (seq=1000)          |
+  |-------------------------------->|
+  |                                 |
   |  2. SYN-ACK (seq=2000, ack=1001)|
-  |<-----------------------------|
-  |                               |
-  |  3. ACK (ack=2001)           |
-  |----------------------------->|
-  |                               |
-  |  CONNECTION ESTABLISHED      |
+  |<--------------------------------|
+  |                                 |
+  |     3. ACK (ack=2001)           |
+  |-------------------------------->|
+  |                                 |
+  |     CONNECTION ESTABLISHED      |
 ```
 
 ### **UDP (User Datagram Protocol)**
@@ -80,7 +80,7 @@ Client                          Server
 - VoIP (Skype, Discord, Zoom)
 - DNS queries
 - DHCP
-- Any data where speed > perfect accuracy
+- where speed > accuracy
 
 ### **Comparison Table:**
 
@@ -91,7 +91,7 @@ Client                          Server
 | Ordering | Ordered | Unordered |
 | Speed | Slower (overhead) | Faster (minimal overhead) |
 | Error Checking | Yes (retransmits) | Basic (checksum only) |
-| Use When | Data integrity critical | Speed critical, some loss acceptable |
+| Use When | Data integrity critical | speed > accuracy |
 
 ---
 
@@ -103,7 +103,7 @@ Client                          Server
 - Captured connection to example.com
 - Identified SYN, SYN-ACK, ACK packets
 - Analyzed sequence and acknowledgment numbers
-- **File:** `wireshark-captures/tcp-handshake.pcapng`
+- ![tcp-handshake.png](./wireshark-captures/tcp-handshake.png)
 
 **Key Observations:**
 ```
@@ -114,26 +114,11 @@ Packet 3: Client → Server [ACK] Seq=1 Ack=1
 Result: Connection established, data transfer begins
 ```
 
-**2. DNS Query (UDP)**
-- Captured DNS lookup for google.com
-- Only 2 packets: Query and Response
-- No handshake, no acknowledgments
-- **File:** `wireshark-captures/dns-query.pcapng`
-
-**Key Observations:**
-```
-Packet 1: Query → 8.8.8.8 (UDP port 53)
-Packet 2: Response ← 8.8.8.8 (IP address returned)
-
-Total packets: 2 (vs TCP would be 7+)
-Speed: <50ms roundtrip
-```
-
-**3. HTTP Traffic**
-- Captured HTTP GET request to http://example.com
+**2. HTTP Traffic**
+- Captured HTTP GET request
 - Saw full conversation readable in plaintext
 - Compared with HTTPS (encrypted, unreadable)
-- **File:** `wireshark-captures/http-traffic.pcapng`
+- ![http-traffic.png](./wireshark-captures/http-traffic.png)
 
 ### **Wireshark Filters Mastered:**
 ```
@@ -152,107 +137,11 @@ tcp.analysis.retransmission  # Find retransmitted packets (network issues)
 
 ---
 
-## 🧪 Practical Exercises Completed
-
-### **Exercise 1: Identify OSI Layers in Wireshark**
-
-**Task:** Open packet capture and identify all 7 OSI layers
-
-**Solution:**
-```
-Packet Details Pane (expanding each section):
-
-Frame 123: ... → Layer 1 (Physical) - Frame metadata
-Ethernet II, Src: ..., Dst: ... → Layer 2 (Data Link)
-Internet Protocol Version 4 → Layer 3 (Network)
-Transmission Control Protocol → Layer 4 (Transport)
-Hypertext Transfer Protocol → Layer 7 (Application)
-
-Layers 5-6 (Session, Presentation):
-- Often combined with Layer 7
-- TLS/SSL = Layer 6 (Presentation - encryption)
-- TCP session management = Layer 5 (Session)
-```
-
-### **Exercise 2: TCP vs UDP Side-by-Side**
-
-**Task:** Capture TCP (HTTPS) and UDP (DNS) traffic, compare packet counts
-
-**Results:**
-
-| Action | Protocol | Packets | Time |
-|--------|----------|---------|------|
-| Visit https://github.com | TCP | 87 packets | 2.3 seconds |
-| DNS lookup google.com | UDP | 2 packets | 0.04 seconds |
-
-**Conclusion:** TCP = reliable but verbose, UDP = fast and minimal
-
-### **Exercise 3: Find Network Issues**
-
-**Task:** Use Wireshark to identify retransmissions (network problems)
-
-**Filter:** `tcp.analysis.retransmission`
-
-**Found:** 12 retransmitted packets during file download
-
-**Diagnosis:** 
-- High packet loss on network
-- Could indicate: WiFi interference, congestion, failing hardware
-
----
-
-## 📝 Key Takeaways
-
-**1. OSI Model is a Troubleshooting Framework**
-```
-Problem: User can't access website
-Troubleshooting by layer:
-- Layer 1: Is cable plugged in?
-- Layer 2: Is switch port active?
-- Layer 3: Can ping default gateway?
-- Layer 4: Is TCP connection established?
-- Layer 7: Is web server responding?
-```
-
-**2. TCP vs UDP Choice Matters**
-```
-Wrong choice = bad user experience
-
-Example: Using TCP for online gaming
-- Result: Lag spikes, stuttering
-- Reason: Retransmissions slow down game state updates
-- Should use: UDP (accept occasional packet loss for speed)
-
-Example: Using UDP for file transfer
-- Result: Corrupted files
-- Reason: Lost packets = missing data
-- Should use: TCP (reliability critical)
-```
-
-**3. Wireshark = Network X-Ray Vision**
-```
-Can see:
-✓ Every packet sent/received
-✓ Protocol details (TCP flags, sequence numbers)
-✓ Application data (HTTP requests, DNS queries)
-✓ Network problems (retransmissions, errors)
-
-Use cases:
-- Troubleshooting connectivity issues
-- Security analysis (detecting attacks)
-- Performance optimization
-- Learning how protocols actually work
-```
-
----
-
 ## Deliverables
 
 ✅ **Packet Captures:**
 - TCP three-way handshake
-- DNS query/response
 - HTTP vs HTTPS traffic comparison
-- UDP streaming traffic
 
 ✅ **Documentation:**
 - OSI model explained with real examples
