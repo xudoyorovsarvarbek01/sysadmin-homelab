@@ -62,7 +62,7 @@ Following a 10-week intensive training program covering:
 
 - **Email:** xudoyorovsarvarbek01@gmail.com
 - **LinkedIn:** linkedin.com/in/sarvarbek-xudoyorov
-- **Portfolio:** [Other projects]
+- **Portfolio:** Other projects
 
 ---
 
