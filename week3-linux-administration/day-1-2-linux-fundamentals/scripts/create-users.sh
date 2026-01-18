@@ -50,7 +50,7 @@ echo ""
 
 # Display created users
 echo "Created users:"
-grep -E "admin-user|developer|webapp|service-account|readonly-user" /etc/passwd
+cat /etc/passwd grep "admin-user|developer|webapp|service-account|readonly-user" 
 
 echo ""
 echo "Group memberships:"

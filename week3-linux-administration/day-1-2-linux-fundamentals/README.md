@@ -13,7 +13,7 @@ Demonstrated core Linux system administration skills including file system navig
 - Bash scripting for automation
 
 **System:** Ubuntu Server 22.04 LTS  
-**Date:** January 2025
+**Date:** January 2026
 
 ---
 
@@ -299,7 +299,7 @@ ls -l /etc/shadow
 # Verify passwords are encrypted
 sudo cat /etc/shadow | grep admin-user
 
-# Expected: admin-user:$6$randomhash...:19000:0:99999:7:::
+# Expected: admin-user:$y$j9T$mYc/.nd3BKVu...:19000:0:99999:7:::
 ```
 
 ### **Test 3: Group Membership**
@@ -315,7 +315,7 @@ groups developer
 
 ---
 
-## 📚 Key Concepts Demonstrated
+## Key Concepts Demonstrated
 
 ### **/etc/passwd Structure:**
 ```
@@ -359,18 +359,6 @@ Sticky Bit (1): Only owner can delete files
 - chmod 1777 directory
 - Example: /tmp (everyone can write, only owner can delete their files)
 ```
-
----
-
-## 📸 Screenshots
-
-### **Required Screenshots:**
-
-1. **File System Hierarchy** (`ls -l /`)
-2. **User Creation** (output of create-users.sh)
-3. **Permissions Demo** (`ls -l` on all 5 scenarios)
-4. **`/etc/passwd` and `/etc/shadow`** (showing created users, redact passwords)
-5. **Permission Levels** (test results showing access/denied)
 
 ---
 
