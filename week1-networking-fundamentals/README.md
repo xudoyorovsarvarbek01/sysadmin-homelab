@@ -1,6 +1,6 @@
 # Week 1: Networking Fundamentals
 
-## 📋 Overview
+## Overview
 
 Comprehensive deep dive into networking fundamentals essential for system administration. Covered OSI model, TCP/IP stack, subnetting, DNS, and DHCP with hands-on packet analysis and practical configuration.
 
@@ -10,7 +10,7 @@ Comprehensive deep dive into networking fundamentals essential for system admini
 
 ---
 
-## 🎯 Learning Objectives Achieved
+## Learning Objectives Achieved
 
 ✅ **OSI Model & TCP/IP Protocol Suite**
 - Understand all 7 OSI layers and their functions
