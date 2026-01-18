@@ -221,7 +221,7 @@ Week 1 knowledge used: DNS, DHCP, packet analysis
 
 ---
 
-## 🔗 Related Projects
+## Related Projects
 
 - [Week 2: Windows Server Administration](../week2-windows-server/)
 - [Week 3: Linux System Administration](../week3-linux-administration/)
