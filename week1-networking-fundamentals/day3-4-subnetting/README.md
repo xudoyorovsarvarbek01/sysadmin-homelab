@@ -216,8 +216,11 @@ Full [VLSM calculator](VLSM-calculator.py)
 
 **Required:**
 1. VLSM calculator output
+
 ![VLSM calculator output](VLSM-calculator-output.png)
+
 2. Subnet calculator script output
+
 ![Subnet calculator script output](./subnet-calculator-output.png)
 
 ---
