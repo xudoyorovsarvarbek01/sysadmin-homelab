@@ -38,15 +38,15 @@ Configured DNS and DHCP services from scratch, analyzed protocols at packet leve
 
 ### **DNS Record Types**
 
-| Record | Purpose | Example |
-|--------|---------|---------|
-| **A** | IPv4 address | example.com → 192.0.2.1 |
-| **AAAA** | IPv6 address | example.com → 2001:db8::1 |
-| **CNAME** | Alias | www.example.com → example.com |
-| **MX** | Mail server | example.com → mail.example.com (priority 10) |
-| **TXT** | Text data | SPF, DKIM, domain verification |
-| **PTR** | Reverse DNS | 1.2.0.192.in-addr.arpa → example.com |
-| **NS** | Nameserver | example.com → ns1.cloudflare.com |
+|#| Record | Purpose | Example |
+|--------|--------|---------|---------|
+|1| **A** | IPv4 address | example.com → 192.0.2.1 |
+|2| **AAAA** | IPv6 address | example.com → 2001:db8::1 |
+|3| **CNAME** | Alias | www.example.com → example.com |
+|4| **MX** | Mail server | example.com → mail.example.com (priority 10) |
+|5| **TXT** | Text data | SPF, DKIM, domain verification |
+|6| **PTR** | Reverse DNS | 1.2.0.192.in-addr.arpa → example.com |
+|7| **NS** | Nameserver | example.com → ns1.cloudflare.com |
 
 ### **DNS Resolution Process**
 ```
@@ -289,6 +289,7 @@ Full [dns-test.sh](./scripts/dns-test.sh)
 - Configured dnsmasq with custom records
 - Tested local DNS resolution
 - Documented configuration
+- Captured DNS process in Wireshark
 
 ✅ **DHCP Analysis:**
 - Captured DORA process in Wireshark
