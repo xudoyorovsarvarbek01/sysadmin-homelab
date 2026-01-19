@@ -201,6 +201,13 @@ def print_section(text):
 
 Full [VLSM calculator](VLSM-calculator.py)
 
+**Usage:**
+
+```bash
+./VLSM-calculator.py
+```
+
+
 ---
 
 ## Subnetting Practice
@@ -214,7 +221,6 @@ Full [VLSM calculator](VLSM-calculator.py)
 
 ## 📸 Screenshots
 
-**Required:**
 1. VLSM calculator output
 
 ![VLSM calculator output](VLSM-calculator-output.png)
