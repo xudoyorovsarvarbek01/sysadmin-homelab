@@ -17,52 +17,6 @@ Demonstrated core Linux system administration skills including file system navig
 
 ---
 
-## Linux File System Hierarchy
-
-### **Key Directories:**
-```
-/
-├── /bin        → Essential user binaries (ls, cp, mv, bash)
-├── /boot       → Boot loader files, kernel
-├── /dev        → Device files (hard drives, USB, terminals)
-├── /etc        → System configuration files
-├── /home       → User home directories
-├── /lib        → Shared libraries (similar to Windows DLLs)
-├── /media      → Removable media mount points (USB, CD)
-├── /mnt        → Temporary mount points
-├── /opt        → Optional software packages
-├── /proc       → Virtual filesystem (process info, system info)
-├── /root       → Root user's home directory
-├── /run        → Runtime data (PIDs, sockets)
-├── /sbin       → System binaries (admin commands: reboot, fdisk)
-├── /srv        → Service data (web servers, FTP)
-├── /sys        → Virtual filesystem (kernel/hardware info)
-├── /tmp        → Temporary files (cleared on reboot)
-├── /usr        → User programs and data
-│   ├── /usr/bin      → User commands
-│   ├── /usr/lib      → Libraries for /usr/bin
-│   ├── /usr/local    → Locally installed software
-│   └── /usr/share    → Shared data (docs, icons)
-└── /var        → Variable data (logs, databases, websites)
-    ├── /var/log      → Log files
-    ├── /var/www      → Web server files
-    └── /var/spool    → Print queues, mail queues
-```
-
-### **Important Configuration Files:**
-```bash
-/etc/passwd       # User account information
-/etc/shadow       # Encrypted passwords
-/etc/group        # Group information
-/etc/sudoers      # Sudo permissions
-/etc/hostname     # System hostname
-/etc/hosts        # Local DNS/host mappings
-/etc/fstab        # Filesystem mount points
-/etc/ssh/sshd_config  # SSH server configuration
-```
-
----
-
 ## User & Group Management
 
 ### **User Types Created:**
@@ -75,19 +29,9 @@ Demonstrated core Linux system administration skills including file system navig
 | **service-account** | 1005 | services | - | /opt/services | /usr/sbin/nologin | Service account (no login) |
 | **readonly-user** | 1006 | readonly | - | /home/readonly-user | /bin/bash | Read-only monitoring user |
 
-### **Groups Created:**
-```bash
-developers    # GID: 2001 - Development team
-webapp        # GID: 2002 - Web application group
-services      # GID: 2003 - Service accounts
-readonly      # GID: 2004 - Read-only users
-```
-
 ---
 
 ## File Permissions Demonstrated
-
-### **Permission Levels:**
 
 ### **Permission Bits:**
 ```
@@ -157,35 +101,6 @@ Reasoning:
 
 Result: Web server can read, owner can modify
 ```
-
-**Scenario 3: Shared Developer Workspace**
-```bash
-Directory: /opt/dev-projects/
-Owner: root:developers
-Permissions: 770 (rwxrwx---)
-SGID bit set (2770)
-
-Reasoning:
-- Group (developers): Full collaboration
-- SGID ensures new files inherit group
-- Others: No access
-
-Result: Team can collaborate, files stay in group
-```
-
-**Scenario 4: Service Account Data**
-```bash
-Directory: /opt/services/data/
-Owner: service-account:services
-Permissions: 700 (rwx------)
-
-Reasoning:
-- Only service account can access
-- Maximum isolation
-
-Result: Service data completely isolated
-```
-
 
 ---
 
@@ -289,20 +204,7 @@ service-account:x:999:999:Service Account:/opt/services:/usr/sbin/nologin
 readonly-user:x:1005:1005:Read-Only Monitoring User:/home/readonly-user:/bin/bash
 ```
 
-### **Test 2: Password File Security**
-```bash
-# Check /etc/shadow permissions (should be 640 or 000)
-ls -l /etc/shadow
-
-# Expected: -rw-r----- 1 root shadow
-
-# Verify passwords are encrypted
-sudo cat /etc/shadow | grep admin-user
-
-# Expected: admin-user:$y$j9T$mYc/.nd3BKVu...:19000:0:99999:7:::
-```
-
-### **Test 3: Group Membership**
+### **Test 2: Group Membership**
 ```bash
 # Check admin-user has sudo access
 groups admin-user
@@ -371,13 +273,6 @@ Sticky Bit (1): Only owner can delete files
 - ✅ 3 automation scripts (user creation, permissions, verification)
 - ✅ Complete documentation
 
-**Permission Levels:**
-1. **Full Admin** - admin-user (sudo access)
-2. **Developer** - developer (group collaboration, docker access)
-3. **Application User** - webapp (web server files)
-4. **Service Account** - service-account (no login, isolated)
-5. **Read-Only** - readonly-user (monitoring, no write)
-
 **Skills Validated:**
 - File system navigation and understanding
 - User/group management (useradd, usermod, groupadd)
@@ -396,4 +291,4 @@ Sticky Bit (1): Only owner can delete files
 ---
 
 *Project completed as part of 10-week sysadmin training program*  
-*Date: January 2026*
+*Date: Mid January 2026*
