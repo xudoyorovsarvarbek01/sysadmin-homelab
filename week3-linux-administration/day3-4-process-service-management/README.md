@@ -204,7 +204,7 @@ sudo crontab -l
 - `/usr/local/bin/weekly-backup.sh`
 - Crontab entry for backups
 
----
+--- 
 
 *Completed as part of Week 3: Linux System Administration*
 *Date: Mid January 2026*
