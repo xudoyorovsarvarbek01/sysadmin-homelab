@@ -206,9 +206,15 @@ Packet 4: DHCP ACK
   Message: ACK, IP is yours
 ```
 
+    Discover
+![discover](./wireshark/Discover-DORA.jpg)
+
+    Acknowledge
+![ack](./wireshark/ACK-DORA.jpg)
+
 ### **Captured DNS Query**
 
-**File:** `wireshark-captures/dns-query.pcapng`
+**File:** `wireshark/dns-query.pcapng`
 
 **Packets:**
 ```
@@ -217,18 +223,18 @@ Packet 1: DNS Query
   Dest: 8.8.8.8 (Google DNS)
   Protocol: UDP, Src Port: 41488, Dst Port: 53
   Query: github.com, Type A
-
+```
 ![query](./wireshark/dns-query.png)
-
+```
 Packet 2: DNS Response
   Source: 8.8.8.8
   Dest: 10.27.173.181
   Protocol: UDP, Src Port: 53, Dst Port: 41488
   Answer: github.com: type A, class IN, addr 140.82.121.4
   TTL: 118 seconds
-
-![response](./wireshark/dns-response.png)
 ```
+![response](./wireshark/dns-response.png)
+
 
 **Total time:** 604.9 milliseconds
 
@@ -331,11 +337,7 @@ sudo dhclient     # Renew
 ## 📸 Screenshots
 
 1. DHCP DORA process in Wireshark
-    Discover
-![discover](./wireshark/Discover-DORA.jpg)
 
-    Acknowledge
-![ack](./wireshark/ACK-DORA.jpg)
 
 3. nslookup/dig examples with output
 4. Wireshark DNS packet details
