@@ -1,0 +1,16 @@
+# File: `/etc/systemd/system/backup-monitor.service`
+
+[Unit]
+Description=Backup Monitoring Service
+After=network.target
+
+[Service]
+Type=simple
+User=backup-user
+WorkingDirectory=/opt/backup-monitor
+ExecStart=/usr/bin/python3 /opt/backup-monitor/monitor.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
